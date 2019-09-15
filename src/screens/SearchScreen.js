@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Text, View} from 'react-native'
 import SearchBar from '../components/SearchBar'
 import vapeAPI from '../api/vape'
@@ -11,16 +11,22 @@ const SearchScreen = () => {
     const [errorMsg,
         setErrorMsg] = useState("")
 
-    const searchAPI = async() => {
+    const searchAPI = async(searchTerm) => {
+        console.log('hi sexy')
         try {
             const response = await vapeAPI.get('/vapeJuice', {});
-
-            setResults(response.data.vapeJuices);
+            // term = searchTerm // used if api route has paramaters
+            setResults(response.data.vapeJuices);  
 
         } catch (err) {
             setErrorMsg("Something went wrong! D:")
         }
     }
+
+
+    useEffect(() => { // HOOK: runs code only once
+        searchAPI()
+    }, [])
 
     return <View>
         <SearchBar term={term} onTermChange={setTerm} onTermSubmit={searchAPI}/>
