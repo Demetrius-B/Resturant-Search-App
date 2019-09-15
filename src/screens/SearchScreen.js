@@ -16,9 +16,9 @@ const SearchScreen = () => {
             <SearchBar term={term} onTermChange={setTerm} onTermSubmit={searchAPI} />
              {errorMsg ? <Text>{errorMsg}</Text> : null}
             <Text>We have found {results.length} Vape Juice.</Text>
-            <ResultsList />
-            <ResultsList />
-            <ResultsList />
+            <ResultsList title="Most Popular" />
+            <ResultsList title="Premium Juice" />
+            <ResultsList title="Cheap but good" />
         </View>
     )
 }
