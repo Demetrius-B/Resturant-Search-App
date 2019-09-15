@@ -11,9 +11,14 @@ const SearchScreen = () => {
         setResults] = useState([])
 
     const searchAPI = async() => {
-        const response = await vapeAPI.get('/vapeJuice', {});
+        try{
+        const response = await vapeAPI.get('/vapeJice', {});
 
         setResults(response.data.vapeJuices);
+
+        } catch (err) {
+            console.log('Something went wrong: ', err)
+        }
     }
 
     return <View>
