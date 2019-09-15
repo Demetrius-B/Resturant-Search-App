@@ -11,14 +11,20 @@ const SearchScreen = () => {
         results,
         errorMsg] = useResults();
 
+    const filterResultsByStock = (stock) => {
+        // stock === true || false
+        return results.filter(results => {
+            return results.inStock === stock;
+        })
+    }
+
     return (
         <View>
             <SearchBar term={term} onTermChange={setTerm} onTermSubmit={searchAPI} />
              {errorMsg ? <Text>{errorMsg}</Text> : null}
             <Text>We have found {results.length} Vape Juice.</Text>
-            <ResultsList title="Most Popular" />
-            <ResultsList title="Premium Juice" />
-            <ResultsList title="Cheap but good" />
+            <ResultsList results={filterResultsByStock(true)} title="In Stock" />
+            <ResultsList results={filterResultsByStock(false)} title="Out of Stock" />
         </View>
     )
 }
