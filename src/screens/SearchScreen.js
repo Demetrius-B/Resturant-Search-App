@@ -13,7 +13,7 @@ const SearchScreen = () => {
 
     const searchAPI = async() => {
         try {
-            const response = await vapeAPI.get('/vapeJice', {});
+            const response = await vapeAPI.get('/vapeJuice', {});
 
             setResults(response.data.vapeJuices);
 
