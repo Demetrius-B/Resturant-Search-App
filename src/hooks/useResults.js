@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import {Text, View} from 'react-native'
 import vapeAPI from '../api/vape'
 
 export default() => {
@@ -19,9 +18,11 @@ export default() => {
             setErrorMsg("Something went wrong! D:")
         }
     }
-}
 
-useEffect(() => { // HOOK: runs code only once
-    searchAPI()
-}, [])
-s
+    // Call SearchAPI component is first rendered. BAD CODE! searchAPI('term')
+    useEffect(() => { // HOOK: runs code only once
+        searchAPI()
+    }, [])
+
+    return [searchAPI, results, errorMsg];
+}
