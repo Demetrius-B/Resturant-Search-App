@@ -6,28 +6,27 @@ import vapeAPI from '../api/vape'
 const SearchScreen = () => {
     const [term,
         setTerm] = useState('');
-
     const [results,
         setResults] = useState([])
+    const [errorMsg,
+        setErrorMsg] = useState("")
 
     const searchAPI = async() => {
-        try{
-        const response = await vapeAPI.get('/vapeJice', {});
+        try {
+            const response = await vapeAPI.get('/vapeJice', {});
 
-        setResults(response.data.vapeJuices);
+            setResults(response.data.vapeJuices);
 
         } catch (err) {
-            console.log('Something went wrong: ', err)
+            setErrorMsg("Something went wrong! D:")
         }
     }
 
     return <View>
-        <SearchBar
-            term={term}
-            onTermChange={setTerm}
-            onTermSubmit={searchAPI}/>
-        <Text>Search Screen</Text>
-        <Text>We have found {results.length} Vape Juice.</Text>
+        <SearchBar term={term} onTermChange={setTerm} onTermSubmit={searchAPI}/>
+        {errorMsg ? <Text>{errorMsg}</Text> : null}
+        <Text>We have found {results.length}
+             Vape Juice.</Text>
     </View>
 }
 
