@@ -8,7 +8,7 @@ const ResultsList = ({title, results}) => {
             <FlatList
                 horizontal
                 data={results}
-                keyExtractor={(result) => result.id.toString()}
+                keyExtractor={(result) => result.id.toString()} // keyExractor must be a string
                 renderItem={({item}) => {
                 return <Text>{item.name}</Text>
             }}/>
