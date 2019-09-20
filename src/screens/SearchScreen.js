@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Text, View} from 'react-native'
+import {Text, View, ScrollView} from 'react-native'
 import SearchBar from '../components/SearchBar'
 import useResults from '../hooks/useResults'
 import ResultsList from '../components/ResultsList'
@@ -18,14 +18,19 @@ const SearchScreen = () => {
         })
     }
 
-    return (
-        <View>
-            <SearchBar term={term} onTermChange={setTerm} onTermSubmit={searchAPI} />
-             {errorMsg ? <Text>{errorMsg}</Text> : null}
-            <Text>We have found {results.length} Vape Juice.</Text>
-            <ResultsList results={filterResultsByStock(true)} title="In Stock" />
-            <ResultsList results={filterResultsByStock(false)} title="Out of Stock" />
-        </View>
+    return ( 
+    <> 
+        <ScrollView>
+            <SearchBar term={term} onTermChange={setTerm} onTermSubmit={searchAPI}/> 
+            {/* {errorMsg
+                ? <Text>{errorMsg}</Text>
+                : null} */}
+            {/* <Text>We have found {results.length}
+                Vape Juice.</Text> */}
+            <ResultsList results={filterResultsByStock(true)} title="In Stock"/>
+            <ResultsList results={filterResultsByStock(false)} title="Out of Stock"/>
+        </ScrollView> 
+    </>
     )
 }
 
